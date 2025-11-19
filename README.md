@@ -7,27 +7,27 @@
 This pipeline automatically generates synthetic stock data daily, stores it securely, manages file notifications, processes uploaded CSVs, and loads final structured data into DynamoDB — all using AWS serverless features.
 
 **Pipeline Steps:**
-1. **Amazon EventBridge** (Light Blue)  
+1. **Amazon EventBridge**   
    - Scheduled rule triggers data generation Lambda daily.
 
-2. **Lambda #1 — Data Generation** (Purple)  
-   - Generates 30 days OHLCV for 50 symbols.
+2. **Lambda #1 — Data Generation**  
+   - Generates random 30 days OHLCV for 50 symbols.
    - Saves each as `stocks/{symbol}.csv` in S3.
 
-3. **Amazon S3 — Data Storage** (Green)  
+3. **Amazon S3 — Data Storage** 
    - Stores CSV files.
    - Each upload triggers an SQS message.
 
-4. **Amazon SQS — Notification Queue** (Orange)  
+4. **Amazon SQS — Notification Queue** 
    - Receives notifications for new S3 files.
    - Acts as buffer between S3 and next Lambda.
 
-5. **Lambda #2 — CSV Processor** (Purple)  
+5. **Lambda #2 — CSV Processor**
    - Triggered by SQS.
    - Reads S3 CSV, parses records.
    - Inserts each row into DynamoDB.
 
-6. **Amazon DynamoDB — Final Storage** (Dark Blue)  
+6. **Amazon DynamoDB — Final Storage** 
    - Table: `stockData`
    - Keys: `symbol` (PK), `date` (SK)
    - Stores OHLCV, volume.
@@ -67,7 +67,7 @@ E --> F[DynamoDB: Insert Data]
 
 ---
 
-## 🧪 Lambda #1 — Generate CSV (Summary)
+## λ Lambda #1 — Generate CSV (Summary)
 
 - Loops 50 symbols, 30 days each
 - Generates OHLCV data
@@ -106,7 +106,7 @@ E --> F[DynamoDB: Insert Data]
 
 ---
 
-## 🐍 Dependencies
+##  Dependencies
 
 - **AWS Lambda Core:**  
   - `boto3`
@@ -116,7 +116,7 @@ E --> F[DynamoDB: Insert Data]
 
 ---
 
-## 📦 DynamoDB Table Schema
+## 📊 DynamoDB Table Schema
 
 | Attribute | Type   | Role             | Description        |
 |-----------|--------|------------------|--------------------|
