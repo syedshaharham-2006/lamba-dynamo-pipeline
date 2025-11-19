@@ -61,13 +61,9 @@ E --> F[DynamoDB: Insert Data]
 
 │ └── lambda_function.py
 
-│
-
 ├── lambda_process/ # Lambda #2: S3 → DynamoDB
 
 │ └── lambda_function.py
-
-│
 
 └── README.md
 
