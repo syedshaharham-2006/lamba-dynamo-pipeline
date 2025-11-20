@@ -54,19 +54,16 @@ E --> F[DynamoDB: Insert Data]
 
 ## 🗂️ Repository Structure
 
-/project-root
+```
+project-root
 │
-
 ├── lambda_generate/ # Lambda #1: Generate & Upload CSV
-
 │ └── lambda_function.py
-
 ├── lambda_process/ # Lambda #2: S3 → DynamoDB
-
 │ └── lambda_function.py
-
 └── README.md
 
+```
 
 ---
 
